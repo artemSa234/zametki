@@ -88,14 +88,6 @@ const storageKey = 'notes-app';
       },
       
       addCard() {
-        if (!this.groupName || !this.inputOne || !this.inputTwo || !this.inputThr || !this.inputFor) {
-          alert("Заполните все поля.");
-          return;
-        }
-        if (this.inputOne.trim() === '' && this.inputTwo.trim() === '' && this.inputThr.trim() === '' && this.inputFor.trim() === '') {
-          alert("Заметка не может быть пустой. Пожалуйста, добавьте текст в заметку.");
-          return;
-        }
         const newGroup = {
           id: Date.now(),
           groupName: this.groupName,

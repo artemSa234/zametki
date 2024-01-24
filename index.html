@@ -9,19 +9,19 @@
     <link rel="stylesheet" href="./css/main.css">
 </head>
 <body>
-  <div>
+  <form>
     <label>Group Name:</label>
-    <input v-model="groupName" />
+    <input v-model="groupName" required/>
     <label>Item 1:</label>
-    <input v-model="inputOne" />
+    <input v-model="inputOne" required/>
     <label>Item 2:</label>
-    <input v-model="inputTwo" />
+    <input v-model="inputTwo" required/>
     <label>Item 3:</label>
-    <input v-model="inputThr" />
+    <input v-model="inputThr" required/>
     <label>Item 4:</label>
     <input v-model="inputFor" />
     <button @click="addCard">Add Card</button>
-  </div>
+</form>
   <div id="app">
     <div class="columns">
       <div class="column" id="column1" ondrop="drop(event)" ondragover="allowDrop(event)">
