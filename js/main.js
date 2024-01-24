@@ -36,4 +36,25 @@ const storageKey = 'notes-app';
         deep: true
       }
     },
+    methods: {
+      toggleItem(card, item) {
+        if (this.isThirdColumnItem(card)) {
+          alert("Элементы третьего столбца не могут быть изменены.");
+          return;
+        }
+        item.checked = !item.checked;
+        this.updateProgress(card);
+      },
+      isThirdColumnItem(card) {
+        return this.thirdColumn.includes(card);
+      },
+      updateProgress(card) {
+        const checkedCount = card.items.filter(item => item.checked).length;
+        const progress = (checkedCount / card.items.length) * 100;
+        card.isComplete = progress === 100;
+        if (card.isComplete) {
+          card.lastChecked = new Date().toLocaleString();
+        }
+        this.checkMoveCard();
+      },
   });
