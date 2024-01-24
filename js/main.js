@@ -5,3 +5,16 @@ const storageKey = 'notes-app';
     secondColumn: [],
     thirdColumn: []
   };
+  let app = new Vue({
+    el: '#app',
+    data: {
+      firstColumn: initialData.firstColumn,
+      secondColumn: initialData.secondColumn,
+      thirdColumn: initialData.thirdColumn,
+      groupName: null,
+      inputOne: null,
+      inputTwo: null,
+      inputThr: null,
+      inputFor: null,
+    }
+  });

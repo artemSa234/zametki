@@ -22,5 +22,22 @@
     <input v-model="inputFor" />
     <button @click="addCard">Add Card</button>
   </div>
+  <div id="app">
+    <div class="columns">
+        <h2>Столбец 1</h2>
+          <h3>{{ card.groupName }}</h3>
+        </div>
+      </div>
+        <h2>Столбец 2</h2>
+          <h3>{{ card.groupName }}</h3>
+        </div>
+      </div>
+  
+        <h2>Столбец 3</h2>
+          <h3>{{ card.groupName }}</h3>
+          <button @click="removeCard(card)">Remove</button>
+        </div>
+      </div>
+    </div>
 </body>
 </html>
