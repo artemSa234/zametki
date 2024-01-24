@@ -1,30 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  
+  <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Socks</title>
     <script defer src="./js/vue.js"></script>
     <script defer src="./js/main.js"></script>
     <link rel="stylesheet" href="./css/main.css">
-</head>
-<body>
-  <div>
-        <form>
-          <label>Group Name:</label>
-          <input v-model="groupName" required/>
-          <label>Item 1:</label>
-          <input v-model="inputOne" required/>
-          <label>Item 2:</label>
-          <input v-model="inputTwo" required/>
-          <label>Item 3:</label>
-          <input v-model="inputThr" required/>
-          <label>Item 4:</label>
-          <input v-model="inputFor" />
-          <button @click="addCard">Add Card</button>
-        </form>
-  </div>
-  <div id="app">
+  </head>
+  
+  <body>
+    <div id="app">
+    <div>
+      <form @submit.prevent="addCard">
+        <label>Group Name:</label>
+        <input v-model="groupName" required/>
+        <label>Item 1:</label>
+        <input v-model="inputOne" required/>
+        <label>Item 2:</label>
+        <input v-model="inputTwo" required/>
+        <label>Item 3:</label>
+        <input v-model="inputThr" required/>
+        <label>Item 4:</label>
+        <input v-model="inputFor" required/>
+        <button type="submit">Add Card</button>
+      </form>
+    </div>
     <div class="columns">
       <div class="column" id="column1" ondrop="drop(event)" ondragover="allowDrop(event)">
         <h2>Столбец 1</h2>
@@ -32,7 +34,7 @@
           <h3>{{ card.groupName }}</h3>
           <ul>
             <li v-for="item in card.items" :key="item.text" @click="toggleItem(card, item)"
-                :class="{ 'completed': item.checked }">{{ item.text }}</li>
+              :class="{ 'completed': item.checked }">{{ item.text }}</li>
           </ul>
         </div>
       </div>
@@ -42,23 +44,23 @@
           <h3>{{ card.groupName }}</h3>
           <ul>
             <li v-for="item in card.items" :key="item.text" @click="toggleItem(card, item)"
-                :class="{ 'completed': item.checked }">{{ item.text }}</li>
+              :class="{ 'completed': item.checked }">{{ item.text }}</li>
           </ul>
         </div>
       </div>
-  
+
       <div class="column" id="column3" ondrop="drop(event)" ondragover="allowDrop(event)">
         <h2>Столбец 3</h2>
         <div class="card" v-for="card in thirdColumn" :key="card.id" :draggable="true" @dragstart="dragStart(card)">
           <h3>{{ card.groupName }}</h3>
           <ul>
             <li v-for="item in card.items" :key="item.text" @click="toggleItem(card, item)"
-                :class="{ 'completed': item.checked }">{{ item.text }}</li>
+              :class="{ 'completed': item.checked }">{{ item.text }}</li>
           </ul>
           <button @click="removeCard(card)">Remove</button>
           <p v-if="card.isComplete">Last Checked: {{ card.lastChecked }}</p>
         </div>
       </div>
     </div>
-</body>
+  </body>
 </html>

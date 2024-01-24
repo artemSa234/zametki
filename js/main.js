@@ -39,17 +39,8 @@ const storageKey = 'notes-app';
         },
         deep: true
       }
-      
     },
     methods: {
-      saveData() {
-        const data = {
-          firstColumn: this.firstColumn,
-          secondColumn: this.secondColumn,
-          thirdColumn: this.thirdColumn
-        };
-        localStorage.setItem(storageKey, JSON.stringify(data));
-      },
       toggleItem(card, item) {
         if (this.isThirdColumnItem(card)) {
           alert("Элементы третьего столбца не могут быть изменены.");
@@ -120,9 +111,29 @@ const storageKey = 'notes-app';
         this.inputThr = null;
         this.inputFor = null;
         this.checkMoveCard();
+        
+      },
+      saveData() {
+        const data = {
+          firstColumn: this.firstColumn,
+          secondColumn: this.secondColumn,
+          thirdColumn: this.thirdColumn
+        };
+        localStorage.setItem(storageKey, JSON.stringify(data));
       },
       dragStart(card) {
         event.dataTransfer.setData('text/plain', JSON.stringify(card));
+      },
+      removeCard(card) {
+        const indexInThirdColumn = this.thirdColumn.indexOf(card);
+        if (indexInThirdColumn !== -1) {
+          this.thirdColumn.splice(indexInThirdColumn, 1);
+          this.$forceUpdate();
+          this.checkMoveCard();
+        }
+      },
+      nextStep() {
+        this.step++;
       },
     }
   });
