@@ -5,6 +5,7 @@ const storageKey = 'notes-app';
     secondColumn: [],
     thirdColumn: []
   };
+
   let app = new Vue({
     el: '#app',
     data: {
@@ -20,23 +21,35 @@ const storageKey = 'notes-app';
     watch: {
       firstColumn: {
         handler(newFirstColumn) {
+          this.saveData();
           this.checkMoveCard();
         },
         deep: true
       },
       secondColumn: {
         handler(newSecondColumn) {
+          this.saveData();
           this.checkMoveCard();
         },
         deep: true
       },
       thirdColumn: {
         handler(newThirdColumn) {
+          this.saveData();
         },
         deep: true
       }
+      
     },
     methods: {
+      saveData() {
+        const data = {
+          firstColumn: this.firstColumn,
+          secondColumn: this.secondColumn,
+          thirdColumn: this.thirdColumn
+        };
+        localStorage.setItem(storageKey, JSON.stringify(data));
+      },
       toggleItem(card, item) {
         if (this.isThirdColumnItem(card)) {
           alert("Элементы третьего столбца не могут быть изменены.");
@@ -107,14 +120,6 @@ const storageKey = 'notes-app';
         this.inputThr = null;
         this.inputFor = null;
         this.checkMoveCard();
-      },
-      saveData() {
-        const data = {
-          firstColumn: this.firstColumn,
-          secondColumn: this.secondColumn,
-          thirdColumn: this.thirdColumn
-        };
-        localStorage.setItem(storageKey, JSON.stringify(data));
       },
       dragStart(card) {
         event.dataTransfer.setData('text/plain', JSON.stringify(card));
