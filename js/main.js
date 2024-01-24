@@ -57,4 +57,30 @@ const storageKey = 'notes-app';
         }
         this.checkMoveCard();
       },
+      MoveFirstColm() {
+        this.firstColumn.forEach(card => {
+          const progress = (card.items.filter(item => item.checked).length / card.items.length) * 100;
+
+          const isMaxSecondColumn = this.secondColumn.length >= 5;
+
+          if (progress >= 50 && !isMaxSecondColumn) {
+            this.secondColumn.push(card);
+            this.firstColumn.splice(this.firstColumn.indexOf(card), 1);
+            this.checkMoveCard();
+          }
+        });
+      },
+      MoveSecondColm() {
+        this.secondColumn.forEach(card => {
+          const progress = (card.items.filter(item => item.checked).length / card.items.length) * 100;
+          if (progress === 100) {
+            card.isComplete = true;
+            card.lastChecked = new Date().toLocaleString();
+            this.thirdColumn.push(card);
+            this.secondColumn.splice(this.secondColumn.indexOf(card), 1);
+            this.MoveFirstColm();
+          }
+        })
+      },
+    }
   });
