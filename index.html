@@ -24,18 +24,37 @@
   </div>
   <div id="app">
     <div class="columns">
+      <div class="column" id="column1" ondrop="drop(event)" ondragover="allowDrop(event)">
         <h2>Столбец 1</h2>
+        <div class="card" v-for="card in firstColumn" :key="card.id" :draggable="true" @dragstart="dragStart(card)">
           <h3>{{ card.groupName }}</h3>
+          <ul>
+            <li v-for="item in card.items" :key="item.text" @click="toggleItem(card, item)"
+                :class="{ 'completed': item.checked }">{{ item.text }}</li>
+          </ul>
         </div>
       </div>
+      <div class="column" id="column2" ondrop="drop(event)" ondragover="allowDrop(event)">
         <h2>Столбец 2</h2>
+        <div class="card" v-for="card in secondColumn" :key="card.id" :draggable="true" @dragstart="dragStart(card)">
           <h3>{{ card.groupName }}</h3>
+          <ul>
+            <li v-for="item in card.items" :key="item.text" @click="toggleItem(card, item)"
+                :class="{ 'completed': item.checked }">{{ item.text }}</li>
+          </ul>
         </div>
       </div>
   
+      <div class="column" id="column3" ondrop="drop(event)" ondragover="allowDrop(event)">
         <h2>Столбец 3</h2>
+        <div class="card" v-for="card in thirdColumn" :key="card.id" :draggable="true" @dragstart="dragStart(card)">
           <h3>{{ card.groupName }}</h3>
+          <ul>
+            <li v-for="item in card.items" :key="item.text" @click="toggleItem(card, item)"
+                :class="{ 'completed': item.checked }">{{ item.text }}</li>
+          </ul>
           <button @click="removeCard(card)">Remove</button>
+          <p v-if="card.isComplete">Last Checked: {{ card.lastChecked }}</p>
         </div>
       </div>
     </div>

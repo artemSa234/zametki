@@ -16,5 +16,24 @@ const storageKey = 'notes-app';
       inputTwo: null,
       inputThr: null,
       inputFor: null,
-    }
+    },
+    watch: {
+      firstColumn: {
+        handler(newFirstColumn) {
+          this.checkMoveCard();
+        },
+        deep: true
+      },
+      secondColumn: {
+        handler(newSecondColumn) {
+          this.checkMoveCard();
+        },
+        deep: true
+      },
+      thirdColumn: {
+        handler(newThirdColumn) {
+        },
+        deep: true
+      }
+    },
   });
