@@ -4,6 +4,7 @@ body {
   padding: 0;
   background-color: #f4f4f4;
 }
+
 .columns {
   display: flex;
   justify-content: space-around;
@@ -23,4 +24,52 @@ body {
   color: #333;
   margin-bottom: 15px;
 }
+
+.card {
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 15px;
+  padding: 15px;
+}
+
+.card h3 {
+  color: #333;
+  margin-bottom: 10px;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  padding: 5px;
+  cursor: pointer;
+}
+
+li.completed {
+  text-decoration: none;
+  
+}
+.completed::before {
+  content: '\2713'; 
+  display: inline-block;
+  margin-right: 5px;
+  color: green;
+}
+button {
+  background-color: #4caf50;
+  color: #fff;
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+
 

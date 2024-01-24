@@ -82,5 +82,50 @@ const storageKey = 'notes-app';
           }
         })
       },
+      checkMoveCard() {
+        this.MoveFirstColm();
+        this.MoveSecondColm();
+      },
+      
+      addCard() {
+        if (!this.groupName || !this.inputOne || !this.inputTwo || !this.inputThr || !this.inputFor) {
+          alert("Заполните все поля.");
+          return;
+        }
+        if (this.inputOne.trim() === '' && this.inputTwo.trim() === '' && this.inputThr.trim() === '' && this.inputFor.trim() === '') {
+          alert("Заметка не может быть пустой. Пожалуйста, добавьте текст в заметку.");
+          return;
+        }
+        const newGroup = {
+          id: Date.now(),
+          groupName: this.groupName,
+          items: [
+            { text: this.inputOne, checked: false },
+            { text: this.inputTwo, checked: false },
+            { text: this.inputThr, checked: false },
+            { text: this.inputFor, checked: false },
+          ]
+        };
+        if (this.firstColumn.length < 3) {
+          this.firstColumn.push(newGroup);
+        }
+        this.groupName = null;
+        this.inputOne = null;
+        this.inputTwo = null;
+        this.inputThr = null;
+        this.inputFor = null;
+        this.checkMoveCard();
+      },
+      saveData() {
+        const data = {
+          firstColumn: this.firstColumn,
+          secondColumn: this.secondColumn,
+          thirdColumn: this.thirdColumn
+        };
+        localStorage.setItem(storageKey, JSON.stringify(data));
+      },
+      dragStart(card) {
+        event.dataTransfer.setData('text/plain', JSON.stringify(card));
+      },
     }
   });
