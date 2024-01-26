@@ -17,6 +17,7 @@ const storageKey = 'notes-app';
       inputTwo: null,
       inputThr: null,
       inputFor: null,
+      inputFiv: null,
     },
     watch: {
       firstColumn: {
@@ -100,6 +101,7 @@ const storageKey = 'notes-app';
             { text: this.inputTwo, checked: false },
             { text: this.inputThr, checked: false },
             { text: this.inputFor, checked: false },
+            { text: this.inputFiv, checked: false },
           ]
         };
         if (this.firstColumn.length < 3) {
@@ -131,9 +133,6 @@ const storageKey = 'notes-app';
           this.$forceUpdate();
           this.checkMoveCard();
         }
-      },
-      nextStep() {
-        this.step++;
-      },
+      }
     }
   });
